@@ -1,0 +1,193 @@
+<body>
+  <div class="container-own">
+    <canvas id="canvas" style="background-color: #f5f5f5; width: 80%"></canvas>
+    
+    
+    
+    <div class="control">
+      <div class="import-file mb-3">
+        <input class="form-control" type="file" id="file-picker" accept="json"/>
+      </div>
+
+      <hr>
+      <div class="shading-toggle form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="shading-toggle"/>
+        <label class="form-check-label" for="shading-toggle">Shading</label>
+      </div>
+      <hr>
+
+      <!-- Translation controller -->
+      <button class="collapsible">+ Translation</button>
+      <div class="content">
+        <div class="inner-content">
+          <div class="translate-x">
+            <label for="translate-x">Translate x</label>
+            <input class="form-range" type="range" id="translate-x" min="-800" value="0" />
+          </div>
+          <div class="translate-y">
+            <label for="translate-y">Translate y</label>
+            <input class="form-range" type="range" id="translate-y" min="-800" value="0" />
+          </div>
+          <div class="translate-z">
+            <label for="translate-z">Translate z</label>
+            <input class="form-range" type="range" id="translate-z" min="-800" value="-400" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Scale controller -->
+      <button class="collapsible">+ Scale</button>
+      <div class="content">
+        <div class="inner-content">
+          <div class="scale-x">
+            <label for="scale-x">Scale x</label>
+            <input class="form-range" type="range" id="scale-x" min="0" max="5" value="1" step="0.01" />
+          </div>
+          <div class="scale-y">
+            <label for="scale-y">Scale y</label>
+            <input class="form-range" type="range" id="scale-y" min="0" max="5" value="1" step="0.01" />
+          </div>
+          <div class="scale-z">
+            <label for="scale-z">Scale z</label>
+            <input class="form-range" type="range" id="scale-z" min="0" max="5" value="1"  step="0.01"/>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Rotation controller -->
+      <button class="collapsible">+ Rotation</button>
+      <div class="content">
+        <div class="inner-content">
+          <div class="rotate-x">
+            <label for="rotate-x">Rotate x</label>
+            <input class="form-range" type="range" id="rotate-x" min="1" max="100" value="50" step="1" />
+          </div>
+          <div class="rotate-y">
+            <label for="rotate-y">Rotate y</label>
+            <input class="form-range" type="range" id="rotate-y" min="1" max="100" value="50" step="1" />
+          </div>
+          <div class="rotate-z">
+            <label for="rotate-z">Rotate z</label>
+            <input class="form-range" type="range" id="rotate-z" min="1" max="100" value="50"  step=1"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- Camera controller -->
+      <button class="collapsible">+ Camera</button>
+      <div class="content">
+        <div class="inner-content">
+          <div class="rotate-camera-vertical">
+            <label for="rotate-camera-vertical">Rotate camera vertical</label>
+            <input class="form-range" type="range" id="rotate-camera-vertical" min="1" max="100" value="50" step="1" />
+            </div>
+            <div class="rotate-camera-horizontal">
+              <label for="rotate-camera-horizontal">Rotate camera horizontal</label>
+              <input class="form-range" type="range" id="rotate-camera-horizontal" min="1" max="100" value="50"  step=1"/>
+            </div>
+
+            <div class="move-camera-vertical">
+              <label for="move-camera-vertical">Move camera vertical</label>
+              <input class="form-range" type="range" id="move-camera-vertical" min="0" max="400" value="200"/>
+            </div>
+            <div class="move-camera-horizontal">
+              <label for="move-camera-horizontal">Move camera horizontal</label>
+              <input class="form-range" type="range" id="move-camera-horizontal" min="0" max="400" value="200"/>
+            </div>
+
+            <div class="fov">
+              <label for="fov">FOV</label>
+              <input class="form-range" type="range" id="fov" min="1" max="179" value="108" />
+            </div>
+          </div>
+        </div>
+      
+      <!-- Projection controller -->
+      <hr>
+      <div>
+        <label for="projection">Choose projection</label>
+        <select class="form-select" name="projection" id="projection">
+          <option value="perspective">Perspective</option>
+          <option value="orthographic">Orthographic</option>
+          <option value="oblique">Oblique</option>
+        </select>
+      </div>
+      <hr>
+
+      <button id="reset" class="btn btn-outline-info">
+        Reset
+      </button>
+
+    <div id="help" class="help">
+      <div class="help-content">
+        <span id ="close" class="close">&times;</span>
+        <h1>Help</h1>
+        <h3>1. Shading</h3>
+          <p>Centang pada checkbox untuk menyalakan atau mematikan shading</p>
+        <h3>2. Translasi</h3>
+          <p>Translasi dapat digunakan untuk mentranslasi objek pada sumbu x, y, dan z</p>
+          <ul>
+            <li>Slider Translate x : melakukan translasi objek pada sumbu x</li>
+            <li>Slider Translate y : melakukan translasi objek pada sumbu y</li>
+            <li>Slider Translate z : melakukan translasi objek pada sumbu z</li>
+          </ul>
+        <h3>3. Rotasi</h3>
+          <p>Rotasi dapat digunakan untuk memutar objek dengan poros pada masing - masing sumbu x, y, dan z</p>
+          <ul>
+            <li>Slider Rotate x : melakukan rotasi objek dengan poros sumbu x</li>
+            <li>Slider Rotate y : melakukan rotasi objek dengan poros sumbu y</li>
+            <li>Slider Rotate z : melakukan rotasi objek dengan poros sumbu z</li>
+          </ul>
+        <h3>4. Rotasi Kamera</h3>
+          <p>Rotasi kamera dapat digunakan untuk menggerakan kamera mengitari objek</p>
+          <ul>
+            <li>Slider Rotate camera vertical   : memutar kamera secara vertical</li>
+            <li>Slider Rotate camera horizontal : memutar kamera secara horizontal</li>
+          </ul>
+        <h3>5. Memindahkan kamera</h3>
+          <p>Memindahkan kamera pada untuk melihat tampak lain dari objek</p>
+          <ul>
+            <li>Slider Move camera vertical   : memindahkan kamera secara vertical</li>
+            <li>Slider Move camera horizontal : memindahkan kamera secara horizontal</li>
+          </ul>
+        <h3>6. Fov</h3>
+          <p>Slider fov dapat digunakan untuk mengatur jarak pandang kamera terhadap objek</p>
+        <h3>7. Projection</h3>
+          <p>Dropdown dapat digunakan untuk memilih jenis proyeksi</p>
+          <ul>
+            <li>Perspective   : proyeksi Perspective</li>
+            <li>Orthographic  : proyeksi orthographic</li>
+            <li>Oblique       : proyeksi oblique</li>
+          </ul>  
+      </div>
+    </div>
+
+      <button id="help-btn" class="btn btn-outline-info">
+        Help
+      </button>
+    </div>
+  </div>
+  <script src="helper/utils.js"></script>
+  <script src="helper/matrix.js"></script>
+  <script src="helper/vector.js"></script>
+  <script src="index.js"></script>
+  <script src="app.js"></script/>
+  <script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight){
+          content.style.maxHeight = null;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    }
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="index.css" />
+</body>
